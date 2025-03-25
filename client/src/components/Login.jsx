@@ -21,7 +21,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post("https://shivam-blogs.onrender.com/api/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       toast.success("Login successful!");
       navigate("/");
@@ -34,7 +34,7 @@ const Login = () => {
   const requestOtp = async () => {
     setIsLoading(true); // Show loading state
     try {
-      await axios.post("http://localhost:5000/api/auth/send-otp", { email });
+      await axios.post("https://shivam-blogs.onrender.com/api/auth/send-otp", { email });
       toast.success("OTP sent to your email!");
       setOtpSent(true);
       startTimer();
@@ -65,7 +65,7 @@ const Login = () => {
   const handleOtpLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/verify-otp", { email, otp });
+      const res = await axios.post("https://shivam-blogs.onrender.com/api/auth/verify-otp", { email, otp });
       localStorage.setItem("token", res.data.token);
       toast.success("OTP Login successful!");
       navigate("/");
@@ -76,7 +76,7 @@ const Login = () => {
 
   // Handle OAuth Login
   const handleOAuthLogin = (provider) => {
-    window.location.href = `http://localhost:5000/api/auth/${provider}`;
+    window.location.href = `https://shivam-blogs.onrender.comapi/auth/${provider}`;
   };
 
   
@@ -84,7 +84,7 @@ const Login = () => {
   // Handle Forgot Password
   const handleForgotPassword = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/forgot-password", { email });
+      await axios.post("https://shivam-blogs.onrender.com/api/auth/forgot-password", { email });
       toast.success("Reset link sent to your email!");
     } catch (err) {
       toast.error("Failed to send reset link");
