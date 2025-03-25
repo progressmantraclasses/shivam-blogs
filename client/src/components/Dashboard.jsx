@@ -10,13 +10,9 @@ const Dashboard = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token") || localStorage.getItem("token"); 
-  
-    console.log("🔹 Token received:", token); // ✅ Debugging
-  
     if (token) {
       try {
         const decodedUser = jwtDecode(token);
-        console.log("🔹 Decoded User:", decodedUser); // ✅ Debugging
         setUser(decodedUser);
   
         // Store token in localStorage if not already stored
@@ -40,7 +36,7 @@ const Dashboard = () => {
 
   const fetchUserDetails = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/${_Id}`);
+      const res = await axios.get(`https://shivam-blogs.onrender.com/api/users/${_Id}`);
       setUser(res.data);
     } catch (error) {
       console.error("Error fetching user details:", error);
