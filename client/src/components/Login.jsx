@@ -76,7 +76,7 @@ const Login = () => {
 
   // Handle OAuth Login
   const handleOAuthLogin = (provider) => {
-    window.location.href = `https://shivam-blogs.onrender.comapi/auth/${provider}`;
+    window.location.href = `https://shivam-blogs.onrender.com/api/auth/${provider}`;
   };
 
   
