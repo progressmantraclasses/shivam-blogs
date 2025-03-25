@@ -53,7 +53,7 @@ app.use(express.json());
 
 // CORS configuration (allow credentials and specify frontend URL)
 app.use(cors({ 
-  origin: "http://localhost:5173", // Your frontend URL
+  origin: "https://st-blogs.vercel.app", // Your frontend URL
   credentials: true,  // Allow cookies to be sent/received
 }));
 
