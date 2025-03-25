@@ -30,7 +30,7 @@ const Blogs = () => {
     // Fetch all blogs if the user is logged in
     useEffect(() => {
         if (isLoggedIn) {
-            axios.get('http://localhost:5000/api/blogs')
+            axios.get('https://shivam-blogs.onrender.com/api/blogs')
                 .then(res => setBlogs(res.data))
                 .catch(err => console.error('Error fetching blogs:', err));
         }
@@ -56,13 +56,13 @@ const Blogs = () => {
 
         try {
             if (editingBlog) {
-                await axios.put(`http://localhost:5000/api/blogs/${editingBlog._id}`, formData, {
+                await axios.put(`https://shivam-blogs.onrender.com/api/blogs/${editingBlog._id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 setBlogs(blogs.map(blog => blog._id === editingBlog._id ? { ...blog, title, content: rawContent, author, image } : blog));
                 setEditingBlog(null);
             } else {
-                const res = await axios.post('http://localhost:5000/api/blogs', formData, {
+                const res = await axios.post('https://shivam-blogs.onrender.com/api/blogs', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 setBlogs([res.data, ...blogs]);
@@ -92,7 +92,7 @@ const Blogs = () => {
         }
 
         try {
-            await axios.delete(`http://localhost:5000/api/blogs/${id}`);
+            await axios.delete(`https://shivam-blogs.onrender.com/api/blogs/${id}`);
             setBlogs(blogs.filter(blog => blog._id !== id));
         } catch (err) {
             console.error('Error deleting blog:', err);
@@ -201,7 +201,7 @@ const Blogs = () => {
                     <div key={blog._id} className="bg-gray-800 p-5 rounded-lg mb-5">
                         <h2 className="text-2xl font-bold">{blog.title}</h2>
                         <p className="text-sm">By {blog.author} on {blog.date || 'Unknown Date'}</p>
-                        {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Blog" className="mt-2 w-full h-40 object-cover rounded-lg" />}
+                        {blog.image && <img src={`https://shivam-blogs.onrender.com/${blog.image}`} alt="Blog" className="mt-2 w-full h-40 object-cover rounded-lg" />}
                         <div className="mt-3" dangerouslySetInnerHTML={{ __html: renderHTMLContent(blog.content) }}></div>
 
                         <div className="mt-3 flex space-x-3">
