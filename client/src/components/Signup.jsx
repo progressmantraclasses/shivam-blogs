@@ -17,7 +17,7 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true); // Start loading
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", form);
+      await axios.post("https://shivam-blogs.onrender.com/api/auth/signup", form);
       toast.info("OTP sent to your email");
       setStep(2); // Move to OTP verification step
       startTimer(); // Start the countdown timer
@@ -53,7 +53,7 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true); // Start loading
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/verify-signup-otp", { email: form.email, otp });
+      const res = await axios.post("https://shivam-blogs.onrender.com/api/auth/verify-signup-otp", { email: form.email, otp });
       
       // Save the token to localStorage after OTP verification
       localStorage.setItem("token", res.data.token);
@@ -73,7 +73,7 @@ const Signup = () => {
   const resendOtp = async () => {
     setIsLoading(true); // Show loading state
     try {
-      await axios.post("http://localhost:5000/api/auth/send-otp", { email: form.email });
+      await axios.post("https://shivam-blogs.onrender.com/api/auth/send-otp", { email: form.email });
       toast.info("OTP resent to your email");
       setTimer(60); // Reset timer to 60 seconds
       setCanResend(false); // Disable resend button again
