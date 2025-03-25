@@ -246,36 +246,36 @@ router.get("/google", passport.authenticate("google", { scope: ["profile", "emai
 
 router.get("/google/callback", passport.authenticate("google", { session: false }), (req, res) => {
     if (!req.user) {
-        return res.redirect("http://localhost:5173/login?error=OAuthFailed");
+        return res.redirect("https://st-blogs.vercel.app/login?error=OAuthFailed");
     }
 
     // Generate a JWT token for the user
     const token = jwt.sign({ id: req.user._id, email: req.user.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     // Redirect to frontend with the token
-    res.redirect(`http://localhost:5173/dashboard?token=${token}`);
+    res.redirect(`https://st-blogs.vercel.app/dashboard?token=${token}`);
 });
 
 router.get("/github", passport.authenticate("github", { scope: ["user:email"] }));
 
 router.get("/github/callback", passport.authenticate("github", { session: false }), (req, res) => {
     if (!req.user) {
-        return res.redirect("http://localhost:5173/login?error=OAuthFailed");
+        return res.redirect("https://st-blogs.vercel.app/login?error=OAuthFailed");
     }
 
     const token = jwt.sign({ id: req.user._id, email: req.user.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.redirect(`http://localhost:5173/dashboard?token=${token}`);
+    res.redirect(`https://st-blogs.vercel.app/dashboard?token=${token}`);
 });
 
 router.get("/linkedin", passport.authenticate("linkedin"));
 
 router.get("/linkedin/callback", passport.authenticate("linkedin", { session: false }), (req, res) => {
     if (!req.user) {
-        return res.redirect("http://localhost:5173/login?error=OAuthFailed");
+        return res.redirect("https://st-blogs.vercel.app/login?error=OAuthFailed");
     }
 
     const token = jwt.sign({ id: req.user._id, email: req.user.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.redirect(`http://localhost:5173/dashboard?token=${token}`);
+    res.redirect(`https://st-blogs.vercel.app/dashboard?token=${token}`);
 });
 
 
