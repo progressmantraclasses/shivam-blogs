@@ -158,8 +158,8 @@ router.post("/forgot-password", async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    const resetLink = `http://localhost:5173/reset-password/${token}`;
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "5m" });
+    const resetLink = `https://st-blogs.vercel.app/reset-password/${token}`;
 
     try {
         await transporter.sendMail({
